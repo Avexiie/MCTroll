@@ -1,0 +1,146 @@
+package com.github.avexiie;
+
+import java.util.HashMap;
+import com.github.avexiie.Commands.BaseCommand;
+import com.github.avexiie.Commands.CrashCommand;
+import com.github.avexiie.Commands.DropCommand;
+import com.github.avexiie.Commands.FopCommand;
+import com.github.avexiie.Commands.FreezeCommand;
+import com.github.avexiie.Commands.LavaCommand;
+import com.github.avexiie.Commands.PoisonCommand;
+import com.github.avexiie.Commands.PotatoCommand;
+import com.github.avexiie.Commands.PushCommand;
+import com.github.avexiie.Commands.ReloadCommand;
+import com.github.avexiie.Commands.SkyCommand;
+import com.github.avexiie.Commands.SmgCommand;
+import com.github.avexiie.Commands.TrollCommand;
+import com.github.avexiie.listeners.FreezeListener;
+import com.github.avexiie.listeners.InvClick;
+import com.github.avexiie.listeners.SmgListener;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.SkullType;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public final class Main extends JavaPlugin {
+    public HashMap<Player, Location> frozenPlayers = new HashMap();
+    public String prefix = ChatColor.translateAlternateColorCodes('&', this.getConfig().getString("Prefix"));
+
+    public Main() {
+    }
+
+    public void onEnable() {
+        this.getConfig().options().copyDefaults();
+        this.saveDefaultConfig();
+        System.out.println("---McTroll Enabled---");
+        this.getCommand("ScTroll").setExecutor(new BaseCommand(this));
+        this.getCommand("Push").setExecutor(new PushCommand(this));
+        this.getCommand("McTrollReload").setExecutor(new ReloadCommand(this));
+        this.getCommand("Potato").setExecutor(new PotatoCommand(this));
+        this.getCommand("FakeOp").setExecutor(new FopCommand(this));
+        this.getCommand("FakeCrash").setExecutor(new CrashCommand(this));
+        this.getCommand("Freeze").setExecutor(new FreezeCommand(this));
+        this.getCommand("Poison").setExecutor(new PoisonCommand(this));
+        this.getCommand("Sky").setExecutor(new SkyCommand(this));
+        this.getCommand("DropInv").setExecutor(new DropCommand(this));
+        this.getCommand("Smg").setExecutor(new SmgCommand(this));
+        this.getCommand("Lavatroll").setExecutor(new LavaCommand(this));
+        this.getCommand("Troll").setExecutor(new TrollCommand(this));
+        this.getServer().getPluginManager().registerEvents(new FreezeListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new SmgListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new InvClick(this), this);
+    }
+
+    public void onGui(Player player, Player playertotroll) {
+        Inventory gui = Bukkit.createInventory(player, 36, ChatColor.AQUA + "ScTroll");
+        ItemStack push = new ItemStack(Material.LEGACY_PISTON_STICKY_BASE);
+        ItemStack potato = new ItemStack(Material.LEGACY_POTATO_ITEM);
+        ItemStack FakeOp = new ItemStack(Material.DIAMOND_BLOCK);
+        ItemStack FakeCrash = new ItemStack(Material.TNT);
+        ItemStack Freeze = new ItemStack(Material.PACKED_ICE);
+        ItemStack Poison = new ItemStack(Material.LEGACY_YELLOW_FLOWER);
+        ItemStack Sky = new ItemStack(Material.FEATHER);
+        ItemStack DropInv = new ItemStack(Material.CHEST);
+        ItemStack Lavatroll = new ItemStack(Material.LAVA_BUCKET);
+        ItemStack boarder = new ItemStack(Material.LEGACY_STAINED_GLASS_PANE);
+        ItemStack playerHead = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short)((byte)SkullType.PLAYER.ordinal()));
+        SkullMeta meta2 = (SkullMeta)playerHead.getItemMeta();
+        meta2.setOwner(playertotroll.getName());
+        meta2.setDisplayName(playertotroll.getDisplayName());
+        playerHead.setItemMeta(meta2);
+        ItemMeta pushmeta = push.getItemMeta();
+        pushmeta.setDisplayName(ChatColor.AQUA + "Push");
+        push.setItemMeta(pushmeta);
+        ItemMeta boardermeta = boarder.getItemMeta();
+        boardermeta.setDisplayName(ChatColor.GREEN + "Coming soon!");
+        boarder.setItemMeta(boardermeta);
+        ItemMeta potatometa = potato.getItemMeta();
+        potatometa.setDisplayName(ChatColor.AQUA + "Potato Inventory");
+        potato.setItemMeta(potatometa);
+        ItemMeta fakeopmeta = FakeOp.getItemMeta();
+        fakeopmeta.setDisplayName(ChatColor.AQUA + "FakeOp");
+        FakeOp.setItemMeta(fakeopmeta);
+        ItemMeta fakecrashmeta = FakeCrash.getItemMeta();
+        fakecrashmeta.setDisplayName(ChatColor.AQUA + "FakeCrash");
+        FakeCrash.setItemMeta(fakecrashmeta);
+        ItemMeta freezemeta = Freeze.getItemMeta();
+        freezemeta.setDisplayName(ChatColor.AQUA + "Freeze");
+        Freeze.setItemMeta(freezemeta);
+        ItemMeta poisonmeta = Poison.getItemMeta();
+        poisonmeta.setDisplayName(ChatColor.AQUA + "Poison");
+        Poison.setItemMeta(poisonmeta);
+        ItemMeta skymeta = Sky.getItemMeta();
+        skymeta.setDisplayName(ChatColor.AQUA + "Sky, Launch a player into the air");
+        Sky.setItemMeta(skymeta);
+        ItemMeta Dropinvmeta = DropInv.getItemMeta();
+        Dropinvmeta.setDisplayName(ChatColor.AQUA + "Drop Inventory");
+        DropInv.setItemMeta(Dropinvmeta);
+        ItemMeta lavameta = Lavatroll.getItemMeta();
+        lavameta.setDisplayName(ChatColor.AQUA + "Replace the block under a player with lava");
+        Lavatroll.setItemMeta(lavameta);
+        gui.setItem(10, push);
+        gui.setItem(11, potato);
+        gui.setItem(12, FakeOp);
+        gui.setItem(13, FakeCrash);
+        gui.setItem(14, Freeze);
+        gui.setItem(15, Poison);
+        gui.setItem(16, Sky);
+        gui.setItem(19, DropInv);
+        gui.setItem(20, Lavatroll);
+        gui.setItem(21, boarder);
+        gui.setItem(22, boarder);
+        gui.setItem(23, boarder);
+        gui.setItem(24, boarder);
+        gui.setItem(25, boarder);
+        gui.setItem(26, boarder);
+        gui.setItem(18, boarder);
+        gui.setItem(9, boarder);
+        gui.setItem(0, boarder);
+        gui.setItem(1, boarder);
+        gui.setItem(2, boarder);
+        gui.setItem(3, boarder);
+        gui.setItem(5, boarder);
+        gui.setItem(6, boarder);
+        gui.setItem(7, boarder);
+        gui.setItem(8, boarder);
+        gui.setItem(17, boarder);
+        gui.setItem(27, boarder);
+        gui.setItem(28, boarder);
+        gui.setItem(29, boarder);
+        gui.setItem(30, boarder);
+        gui.setItem(31, boarder);
+        gui.setItem(32, boarder);
+        gui.setItem(33, boarder);
+        gui.setItem(34, boarder);
+        gui.setItem(35, boarder);
+        gui.setItem(4, playerHead);
+        player.openInventory(gui);
+    }
+}
