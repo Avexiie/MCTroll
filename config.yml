@@ -1,0 +1,39 @@
+#Here you can set the prefix.
+Prefix: '&8[&eMCTroll&8]'
+
+
+#Here you can set the messages you get when you push a player
+#You can use %player% to get the name of the player you are pushing
+#You can use "&" color codes more information here https://www.colorschemer.com/minecraft-color-codes/
+PushMessage: '&a%player% has been pushed!'
+
+
+#Here you can set the messages you get when you freeze/unfreeze a player
+#You can use %player% to get the name of the player you are freezing
+#You can use "&" color codes more information here https://www.colorschemer.com/minecraft-color-codes/
+FreezeMessage: '&a%player% &2has been frozen!'
+UnfreezeMessage: '&a%player% &2has been unfrozen!'
+
+
+#Here you can set the messages you get when you poison a player
+#You can use %player% to get the name of the player you are poisoning
+#You can use "&" color codes more information here https://www.colorschemer.com/minecraft-color-codes/
+PoisonMessage: '&a%player% &2is now being poisoned!'
+
+
+#Here you can set the messages you get when you potato troll a player
+#You can use %player% to get the name of the player you are giving the potatoes to
+#You can use "&" color codes more information here https://www.colorschemer.com/minecraft-color-codes/
+PotatoMessage: '&a%player% inventory has been filled with potatoes!'
+
+
+#Here you can set the messages you get when you launch a player into the sky
+#You can use %player% to get the name of the player you are launching
+#You can use "&" color codes more information here https://www.colorschemer.com/minecraft-color-codes/
+SkyMessage: '&a%player% has been launched into the sky!'
+
+
+#Here you can set the messages you get when you drop a player's inventory
+#You can use %player% to get the name of the player you are trolling
+#You can use "&" color codes more information here https://www.colorschemer.com/minecraft-color-codes/
+DropInvMessage: '&2Dropped &a%player% &2inventory!'
