@@ -1,0 +1,33 @@
+name: MCTroll
+version: 1.0.0
+main: com.github.avexiie.Main
+authors: [Avexiie]
+description: An Amazing troll plugin.
+commands:
+  MCTroll:
+    description: Base command for ScTroll Plugin!
+    aliases: [tr, troll]
+  Troll:
+    description: Opens A Gui to troll a player!
+  Push:
+    description: Pushes any player you want to the sky!
+  ScTrollReload:
+    description: Reloads the config!
+  Potato:
+    description: Fills any player's inventory to all potatoes!
+  FakeOp:
+    description: Send a convincing OP message to any player you want!
+  FakeCrash:
+    description: Kicks any player you want with a worrying crash message!
+  Freeze:
+    description: Freezes/Unfreezes any player you want!
+  Poison:
+    description: Gives any player you want a poison effect for few seconds!
+  Sky:
+    description: Launches any player you want into the sky!
+  DropInv:
+    description: Drops any player's inventory on the floor!
+  Smg:
+    description: Gives you an smg to troll players with!
+  Lavatroll:
+    description: Sets the block under any player you want to lava!
